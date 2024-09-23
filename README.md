@@ -29,4 +29,17 @@ This project is a Simple Calculator implemented in Java that provides basic arit
 - **Input Validation is Crucial:** Handling edge cases like division by zero and negative inputs for square roots ensures the application runs smoothly without errors.  
 - **User Experience:** A simple menu-driven interface and error messages improve user interaction, making the application more user-friendly.  
 - **Code Modularity:** Structuring the code with separate methods for each operation (addition, subtraction, etc.) makes the program more maintainable and extendable.  
-- **Expandable Design:** The use of modular functions and clear operation symbols lays the foundation for adding more features like trigonometric functions or memory recall in future versions.  
+- **Expandable Design:** The use of modular functions and clear operation symbols lays the foundation for adding more features like trigonometric functions or memory recall in future versions.
+
+### Features
+- **Basic Operations:** Addition (+), Subtraction (-), Multiplication (*), Division (/), Modulus (%).  
+- **Advanced Operations:** Exponentiation (^), Square Root (√).  
+- **Memory Storage:** Stores the result of the latest calculation for reference in future operations.  
+- **Calculation History:** Displays a record of all calculations performed during the session.  
+- **Error Handling:** Division by zero and square root of negative numbers are properly handled with error messages.  
+- **User Interaction:** Allows the user to choose the operation, enter values, and continue with further calculations or exit.
+
+### Future Enhancements
+- Include trigonometric functions.  
+- Implement memory recall to reuse previous results.  
+- Provide a graphical user interface (GUI) for better usability.  
