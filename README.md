@@ -1,9 +1,9 @@
-**NAME:** CHERALA MANASA
-**COMPANY:** CODTECH IT SOLUTIONS
-**ID:** CT08DS7033
-**DOMAIN:** JAVA PROGRAMMING
-**DURATION:** August to September 2024
-**MENTOR:** Neela Santhosh Kumar
+**Name:** CHERALA MANASA  
+**Company:** CODTECH IT SOLUTIONS  
+**ID:** CT08DS7033  
+**Domain:** JAVA PROGRAMMING  
+**Duration:** August to September 2024  
+**Mentor:** Neela Santhosh Kumar  
 
 ## Overview of the Project
 
