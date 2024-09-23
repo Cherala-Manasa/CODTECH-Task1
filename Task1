@@ -1,0 +1,179 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SimpleCalculator {
+    private static double memory = 0;
+    private static ArrayList<String> history = new ArrayList<>();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int continueChoice = 1;  // Initialize continueChoice
+
+        do {
+            System.out.println("Choose an operation: ");
+            System.out.println("1. Addition (+)");
+            System.out.println("2. Subtraction (-)");
+            System.out.println("3. Multiplication (*)");
+            System.out.println("4. Division (/)");
+            System.out.println("5. Modulus (%)");
+            System.out.println("6. Exponentiation (^)");
+            System.out.println("7. Square Root of First Number");
+            System.out.println("8. View Calculation History");
+            System.out.println("9. Exit");
+            System.out.print("Enter the number corresponding to the operation: ");
+            int choice = scanner.nextInt();
+
+            double num1 = 0, num2 = 0;
+            double result = 0;
+
+            switch (choice) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    System.out.print("Enter the first number: ");
+                    num1 = scanner.nextDouble();
+                    System.out.print("Enter the second number: ");
+                    num2 = scanner.nextDouble();
+                    break;
+                case 6:
+                    System.out.print("Enter the base number: ");
+                    num1 = scanner.nextDouble();
+                    System.out.print("Enter the exponent number: ");
+                    num2 = scanner.nextDouble();
+                break;
+                case 7:
+                    System.out.print("Enter the number to perform square root: ");
+                    num1 = scanner.nextDouble();
+                    break;
+                case 8:
+                    viewHistory();
+                    System.out.print("Do you want to perform another operation? (1 for Yes, 2 for No): ");
+                    continueChoice = scanner.nextInt();
+                    if (continueChoice != 1 && continueChoice != 2) {
+                        System.out.println("Invalid choice. Exiting the program.");
+                        return; // Exit the program
+                    }
+                    continue; // Skip to next iteration
+                case 9:
+                    System.out.println("Exiting the program...");
+                    System.out.println("Thank you for using the calculator. Goodbye!");
+                    scanner.close();
+                    return; // Exit the program
+                default:
+                    System.out.println("Invalid operation choice.");
+                    continue;
+            }
+
+            switch (choice) {
+                case 1:
+                    result = add(num1, num2);
+                    System.out.println("Result: " + num1 + " + " + num2 + " = " + result);
+                    break;
+                case 2:
+                    result = subtract(num1, num2);
+                    System.out.println("Result: " + num1 + " - " + num2 + " = " + result);
+                    break;
+                case 3:
+                    result = multiply(num1, num2);
+                    System.out.println("Result: " + num1 + " * " + num2 + " = " + result);
+                    break;
+                case 4:
+                    result = divide(num1, num2);
+                    if (!Double.isNaN(result)) {
+                        System.out.println("Result: " + num1 + " / " + num2 + " = " + result);
+                    }
+                    break;
+                case 5:
+                    result = modulus(num1, num2);
+                    System.out.println("Result: " + num1 + " % " + num2 + " = " + result);
+                    break;
+                case 6:
+                    result = exponentiate(num1, num2);
+                    System.out.println("Result: " + num1 + " ^ " + num2 + " = " + result);
+                    break;
+                case 7:
+                    result = squareRoot(num1);
+                    if (!Double.isNaN(result)) {
+                        System.out.println("Result: √" + num1 + " = " + result);
+                    }
+                    break;
+            }
+
+            memory = result;
+            history.add(num1 + " " + getOperationSymbol(choice) + " " + (choice == 7 ? "" : num2) + " = " + result);
+
+            if (choice != 8) {
+                System.out.print("Do you want to perform another calculation? (1 for Yes, 2 for No): ");
+                continueChoice = scanner.nextInt();
+                if (continueChoice != 1 && continueChoice != 2) {
+                    System.out.println("Invalid choice. Exiting the program.");
+                    break;
+                }
+            }
+        } while (continueChoice == 1);
+
+        System.out.println("Thank you for using the calculator. Goodbye!");
+    }
+
+    public static double add(double num1, double num2) {
+        return num1 + num2;
+    }
+
+    public static double subtract(double num1, double num2) {
+        return num1 - num2;
+    }
+
+    public static double multiply(double num1, double num2) {
+        return num1 * num2;
+    }
+
+    public static double divide(double num1, double num2) {
+        if (num2 == 0) {
+            System.out.println("Error: Division by zero is not allowed.");
+            return Double.NaN;
+        }
+        return num1 / num2;
+    }
+
+    public static double modulus(double num1, double num2) {
+        return num1 % num2;
+    }
+
+    public static double exponentiate(double num1, double num2) {
+        return Math.pow(num1, num2);
+    }
+
+    public static double squareRoot(double num1) {
+        if (num1 < 0) {
+            System.out.println("Error: Square root of a negative number is not allowed.");
+            return Double.NaN;
+        }
+        return Math.sqrt(num1);
+    }
+
+    public static void viewHistory() {
+        if (history.isEmpty()) {
+            System.out.println("No history available.");
+        } else {
+            System.out.println("Calculation History:");
+            for (String record : history) {
+                System.out.println(record);
+            }
+        }
+    }
+
+    private static String getOperationSymbol(int choice) {
+        switch (choice) {
+            case 1: return "+";
+            case 2: return "-";
+            case 3: return "*";
+            case 4: return "/";
+            case 5: return "%";
+            case 6: return "^";
+            case 7: return "√";
+            default: return "";
+        }
+    }
+}
